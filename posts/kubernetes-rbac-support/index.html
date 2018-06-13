@@ -5,14 +5,14 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
-  <title> Kubernetes中的RBAC支持 - jimmysong.io|宋净超的博客|Cloud Native Developer Advocate</title>
-  <meta name="description" content="jimmysong.io|宋净超的博客|Cloud Native Developer Advocate" />
+  <title> Kubernetes中的RBAC支持 - jimmysong.io|贾商的博客|Cloud Native Developer Advocate</title>
+  <meta name="description" content="jimmysong.io|贾商的博客|Cloud Native Developer Advocate" />
   <meta property="og:title" content="Kubernetes中的RBAC支持" />
   <meta name="twitter:title" content="Kubernetes中的RBAC支持" />
   <meta name="description" content="在Kubernetes1.6版本中新增角色访问控制机制（Role-Based Access，RBAC）让集群管理员可以针对特定使用者或服务账号">
   <meta property="og:description" content="在Kubernetes1.6版本中新增角色访问控制机制（Role-Based Access，RBAC）让集群管理员可以针对特定使用者或服务账号">
   <meta name="twitter:description" content="在Kubernetes1.6版本中新增角色访问控制机制（Role-Based Access，RBAC）让集群管理员可以针对特定使用者或服务账号">
-  <meta name="author" content="Jimmy Song(宋净超)"/>
+  <meta name="author" content="navy(贾商)"/>
   <link href='https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/favicon.ico' rel='icon' type='image/x-icon'/>
   <meta property="og:image" content="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/avatar-icon.png" />
   <meta name="twitter:image" content="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/avatar-icon.png" />
@@ -21,11 +21,11 @@
   <meta name="twitter:creator" content="@jimmysongio" />
   <meta property="og:url" content="https://jimmysong.io/posts/kubernetes-rbac-support/" />
   <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="Jimmy Song" />
+  <meta property="og:site_name" content="navy" />
 
   <meta name="generator" content="Hugo 0.40" />
   <link rel="canonical" href="https://jimmysong.io/posts/kubernetes-rbac-support/" />
-  <link rel="alternate" href="https://jimmysong.io/index.xml" type="application/rss+xml" title="Jimmy Song">
+  <link rel="alternate" href="https://jimmysong.io/index.xml" type="application/rss+xml" title="navy">
   <script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/jquery-1.12.4.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
@@ -114,7 +114,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="https://jimmysong.io/">Jimmy Song</a>
+      <a class="navbar-brand" href="https://jimmysong.io/">navy</a>
     </div>
     <div class="collapse navbar-collapse" id="main-navbar">
       <ul class="nav navbar-nav navbar-right">
@@ -243,8 +243,8 @@
     <div class="avatar-container">
       <div class="avatar-img-border">
         
-          <a title="Jimmy Song" href="https://jimmysong.io/">
-            <img class="avatar-img" src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/avatar-icon.png" alt="Jimmy Song" />
+          <a title="navy" href="https://jimmysong.io/">
+            <img class="avatar-img" src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/avatar-icon.png" alt="navy" />
           </a>
         
       </div>
@@ -422,7 +422,7 @@ autocomplete('#aa-search-input',
 
 <h3 id="前言">前言</h3>
 
-<p>本文翻译自<a href="http://blog.kubernetes.io/2017/04/rbac-support-in-kubernetes.html">RBAC Support in Kubernetes</a>，转载自<a href="https://www.kubernetes.org.cn/1879.html">kubernetes中文社区</a>，译者催总，<a href="http://rootsongjc.github.com/about">Jimmy Song</a>做了稍许修改。该文章是<a href="http://blog.kubernetes.io/2017/03/five-days-of-kubernetes-1.6.html">5天内了解Kubernetes1.6新特性</a>的系列文章之一。</p>
+<p>本文翻译自<a href="http://blog.kubernetes.io/2017/04/rbac-support-in-kubernetes.html">RBAC Support in Kubernetes</a>，转载自<a href="https://www.kubernetes.org.cn/1879.html">kubernetes中文社区</a>，译者催总，<a href="http://rootsongjc.github.com/about">navy</a>做了稍许修改。该文章是<a href="http://blog.kubernetes.io/2017/03/five-days-of-kubernetes-1.6.html">5天内了解Kubernetes1.6新特性</a>的系列文章之一。</p>
 
 <p>One of the highlights of the <a href="http://blog.kubernetes.io/2017/03/kubernetes-1.6-multi-user-multi-workloads-at-scale.html">Kubernetes 1.6</a>中的一个亮点时RBAC访问控制机制升级到了beta版本。RBAC，基于角色的访问控制机制，是用来管理kubernetes集群中资源访问权限的机制。使用RBAC可以很方便的更新访问授权策略而不用重启集群。</p>
 
@@ -653,13 +653,13 @@ $ curl -ik \
         &copy;2017-2018
           
             
-              <a href="https://jimmysong.io">Jimmy Song(宋净超)</a>
+              <a href="https://jimmysong.io">navy(贾商)</a>
             
           
           
           
             &nbsp;&bull;&nbsp;
-            <a href="https://jimmysong.io/">Jimmy Song</a>
+            <a href="https://jimmysong.io/">navy</a>
           
         </p>
         <p class="credits theme-by text-muted">
