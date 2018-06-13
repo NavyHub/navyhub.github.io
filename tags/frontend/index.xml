@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Frontend on Jimmy Song</title>
+    <title>Frontend on navy</title>
     <link>https://jimmysong.io/tags/frontend/</link>
-    <description>Recent content in Frontend on Jimmy Song</description>
+    <description>Recent content in Frontend on navy</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <managingEditor>jimmysong@jimmysong.io (Jimmy Song(宋净超))</managingEditor>
-    <webMaster>jimmysong@jimmysong.io (Jimmy Song(宋净超))</webMaster>
+    <managingEditor>jimmysong@jimmysong.io (navy(贾商))</managingEditor>
+    <webMaster>jimmysong@jimmysong.io (navy(贾商))</webMaster>
     <lastBuildDate>Wed, 05 Apr 2017 14:28:51 +0800</lastBuildDate>
     
 	<atom:link href="https://jimmysong.io/tags/frontend/index.xml" rel="self" type="application/rss+xml" />
@@ -17,7 +17,7 @@
       <title>Kubernetes Dashboard/Web UI安装全记录</title>
       <link>https://jimmysong.io/posts/kubernetes-dashboard-installation/</link>
       <pubDate>Wed, 05 Apr 2017 14:28:51 +0800</pubDate>
-      <author>jimmysong@jimmysong.io (Jimmy Song(宋净超))</author>
+      <author>jimmysong@jimmysong.io (navy(贾商))</author>
       <guid>https://jimmysong.io/posts/kubernetes-dashboard-installation/</guid>
       <description>几天在CentOS7.2上安装Kubernetes1.6和安装好flannel网络配置，今天我们来安装下kuberentnes的dashbo</description>
     </item>

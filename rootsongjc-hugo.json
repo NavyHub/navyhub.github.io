@@ -7,8 +7,8 @@
         "tags": [
             "me"
         ],
-        "subtitle": "宋净超",
-        "description": "Jimmy Song(宋净超) - Cloud Native and Big Data",
+        "subtitle": "贾商",
+        "description": "navy(贾商) - Cloud Native and Big Data",
         "nocomment": true,
         "postmeta": false,
         "notoc": true,
@@ -55,7 +55,7 @@
         "uri": "posts/archsummit-beijing-2017-from-kubernetes-to-cloud-native",
         "objectID": "posts/archsummit-beijing-2017-from-kubernetes-to-cloud-native",
         "title": "从Kubernetes到Cloud Native——云原生应用之路",
-        "description": "宋净超在ArchSummit北京站的演讲，从Kubernetes到Cloud Native，我的云原生应用之路",
+        "description": "贾商在ArchSummit北京站的演讲，从Kubernetes到Cloud Native，我的云原生应用之路",
         "date": "2017-12-07T04:11:29.000Z",
         "tags": [
             "me",
@@ -217,7 +217,7 @@
             "book"
         ],
         "categories": "cloud-native",
-        "description": "Cloud Native Java中文版（译者：张若飞、宋净超）原书目录和翻译日志",
+        "description": "Cloud Native Java中文版（译者：张若飞、贾商）原书目录和翻译日志",
         "bigimg": [
             {
                 "src": "https://ws1.sinaimg.cn/large/00704eQkly1fs4rlgav4pj30ls06ygsa.jpg",
