@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title> Contiv入坑指南-v2plugin - jimmysong.io|宋净超的博客|Cloud Native Developer Advocate</title>
+  <meta name="description" content="jimmysong.io|宋净超的博客|Cloud Native Developer Advocate" />
+  <meta property="og:title" content="Contiv入坑指南-v2plugin" />
+  <meta name="twitter:title" content="Contiv入坑指南-v2plugin" />
+  <meta name="description" content="继续趟昨天挖的坑。 昨天的issue-776已经得到@gkvijay的回复，原来是因为没有安装contiv/v2plugin的缘故，所以cre">
+  <meta property="og:description" content="继续趟昨天挖的坑。 昨天的issue-776已经得到@gkvijay的回复，原来是因为没有安装contiv/v2plugin的缘故，所以cre">
+  <meta name="twitter:description" content="继续趟昨天挖的坑。 昨天的issue-776已经得到@gkvijay的回复，原来是因为没有安装contiv/v2plugin的缘故，所以cre">
+  <meta name="author" content="Jimmy Song(宋净超)"/>
+  <link href='https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/favicon.ico' rel='icon' type='image/x-icon'/>
+  <meta property="og:image" content="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/avatar-icon.png" />
+  <meta name="twitter:image" content="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/avatar-icon.png" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@jimmysongio" />
+  <meta name="twitter:creator" content="@jimmysongio" />
+  <meta property="og:url" content="https://jimmysong.io/posts/contiv-v2plugin/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Jimmy Song" />
+
+  <meta name="generator" content="Hugo 0.40" />
+  <link rel="canonical" href="https://jimmysong.io/posts/contiv-v2plugin/" />
+  <link rel="alternate" href="https://jimmysong.io/index.xml" type="application/rss+xml" title="Jimmy Song">
+  <script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/jquery-1.12.4.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  
+  
+  <link rel="stylesheet" href="https://jimmysong.io/css/main.css" />
+  <link rel="stylesheet" href="https://jimmysong.io/css/search.css" />
+  
+  
+
+<meta name="baidu-site-verification" content="g8IYR9SNLF" />
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?11f7d254cfa4e0ca44b175c66d379ecc";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+<link rel="stylesheet" href="https://jimmysong.io/css/prism.css" />
+
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/photoswipe.min.css" integrity="sha256-sCl5PUOGMLfFYctzDW3MtRib0ctyUvI9Qsmq2wXOeBY=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/default-skin/default-skin.min.css" integrity="sha256-BFeI1V+Vh1Rk37wswuOYn5lsTcaU96hGaI7OUVCLjPc=" crossorigin="anonymous" />
+
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+</head>
+
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https://jimmysong.io/">Jimmy Song</a>
+    </div>
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">Categories</a>
+              <div class="navlinks-children">
+                
+                
+                  <a href="https://jimmysong.io/categories/kubernetes">kubernetes</a>
+                
+                
+                  <a href="https://jimmysong.io/categories/cloud-native">Cloud Native</a>
+                
+                
+                  <a href="https://jimmysong.io/categories/microservices">Microservices</a>
+                
+                
+                  <a href="https://jimmysong.io/categories/devops">Devops</a>
+                
+                
+                  <a href="https://jimmysong.io/categories/github">Github</a>
+                
+                
+                  <a href="https://jimmysong.io/categories/serverless">Serverless</a>
+                
+                
+                  <a href="https://jimmysong.io/categories/service-mesh">Service Mesh</a>
+                
+                
+                  <a href="https://jimmysong.io/tags">Tags</a>
+                
+              </div>
+            </li>
+          
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">Gitbooks</a>
+              <div class="navlinks-children">
+                
+                
+                  <a href="https://jimmysong.io/kubernetes-handbook">Kubernetes handbook</a>
+                
+                
+                  <a href="https://jimmysong.io/docker-handbook">Docker handbook</a>
+                
+                
+                  <a href="https://jimmysong.io/hugo-handbook">Hugo Handbook</a>
+                
+                
+                  <a href="https://servicemesher.github.io/envoy">Envoy proxy中文文档</a>
+                
+                
+                  <a href="https://jimmysong.io/migrating-to-cloud-native-application-architectures">Migrating to Cloud Native</a>
+                
+              </div>
+            </li>
+          
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">Publications</a>
+              <div class="navlinks-children">
+                
+                
+                  <a href="https://jimmysong.io/cloud-native-go">Cloud Native Go</a>
+                
+                
+                  <a href="https://jimmysong.io/posts/cloud-native-python">Cloud Native Python</a>
+                
+                
+                  <a href="https://jimmysong.io/posts/cloud-native-java">Cloud Native Java</a>
+                
+              </div>
+            </li>
+          
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">Projects</a>
+              <div class="navlinks-children">
+                
+                
+                  <a href="https://github.com/rootsongjc/kubernetes-vagrant-centos-cluster">k8s all-in-one</a>
+                
+                
+                  <a href="https://jimmysong.io/spark-on-k8s">Spark on kubernetes</a>
+                
+                
+                  <a href="https://jimmysong.io/posts/yarn-on-docker">Magpie</a>
+                
+                
+                  <a href="https://jimmysong.io/cheatsheets">Cheatsheets</a>
+                
+                
+                  <a href="https://github.com/rootsongjc/beautifulhugo">Beautifulhugo</a>
+                
+              </div>
+            </li>
+          
+        
+          
+            <li>
+              <a title="About" href="/about">About</a>
+              
+              
+            </li>
+          
+        
+
+        
+
+        
+        
+          <li>
+            <a href="#modalSearch" data-toggle="modal" data-target="#modalSearch" style="outline: none;">
+              <span class="hidden-sm hidden-md hidden-lg">Search</span> <span id="searchGlyph" class="glyphicon glyphicon-search"></span>
+            </a>
+          </li>
+          
+      </ul>
+    </div>
+
+    <div class="avatar-container">
+      <div class="avatar-img-border">
+        
+          <a title="Jimmy Song" href="https://jimmysong.io/">
+            <img class="avatar-img" src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/avatar-icon.png" alt="Jimmy Song" />
+          </a>
+        
+      </div>
+    </div>
+
+  </div>
+</nav>
+
+
+
+
+
+  <div id="modalSearch" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Search jimmysong.io</h4>
+        </div>
+        <div class="modal-body">
+            
+<div class="aa-input-container" id="aa-input-container">
+    <input type="search" id="aa-search-input" class="aa-input-search" placeholder="Search for titles or URIs..." name="search" autocomplete="off" />
+    <svg class="aa-input-icon" viewBox="654 -372 1664 1664">
+        <path d="M1806,332c0-123.3-43.8-228.8-131.5-316.5C1586.8-72.2,1481.3-116,1358-116s-228.8,43.8-316.5,131.5  C953.8,103.2,910,208.7,910,332s43.8,228.8,131.5,316.5C1129.2,736.2,1234.7,780,1358,780s228.8-43.8,316.5-131.5  C1762.2,560.8,1806,455.3,1806,332z M2318,1164c0,34.7-12.7,64.7-38,90s-55.3,38-90,38c-36,0-66-12.7-90-38l-343-342  c-119.3,82.7-252.3,124-399,124c-95.3,0-186.5-18.5-273.5-55.5s-162-87-225-150s-113-138-150-225S654,427.3,654,332  s18.5-186.5,55.5-273.5s87-162,150-225s138-113,225-150S1262.7-372,1358-372s186.5,18.5,273.5,55.5s162,87,225,150s113,138,150,225  S2062,236.7,2062,332c0,146.7-41.3,279.7-124,399l343,343C2305.7,1098.7,2318,1128.7,2318,1164z" />
+    </svg>
+</div>
+
+
+
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/algoliasearch.min.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/autocomplete.min.js"></script>
+
+<script>
+var client = algoliasearch("X4YB3WOBNV", "d2134c5a8d250e6d3246594240c45201");
+var index = client.initIndex('rootsongjc-hugo');
+
+autocomplete('#aa-search-input',
+{ hint: false}, {
+    source: autocomplete.sources.hits(index, {hitsPerPage: 5}),
+    
+    displayKey: 'name',
+    
+    templates: {
+        
+        suggestion: function(suggestion) {
+            
+            return '<span>' + '<a href="/' + suggestion.uri+ '">' +
+            suggestion._highlightResult.title.value + '</a></span>';
+        }
+    }
+});
+</script>
+
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+    
+  
+  
+  
+
+
+
+
+  
+    <div id="header-big-imgs" data-num-img=1 data-img-src-1="https://res.cloudinary.com/jimmysong/image/upload/images/20161022082.jpg" data-img-desc-1="上海交通大学 Oct 22,2016"></div>
+  
+
+  <header class="header-section has-img">
+    
+      <div class="intro-header big-img">
+        
+        
+        <div class="container">
+          <div class="row">
+              <div class="col-lg-12 col-md-12 col-md-offset-0">
+                
+                <div class="post-heading">
+                
+                  
+                     <h1>Contiv入坑指南-v2plugin</h1>
+                     
+                    <span class="post-meta">
+  
+  Posted on March 10, 2017
+  
+  
+</span>
+
+
+                    
+                  
+                  
+              </div>
+            </div>
+          </div>
+        </div>
+        <span class="img-desc" style="display: inline;"></span>
+      </div>
+    
+    <div class="intro-header no-img">
+      
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 col-md-12 col-md-offset-0">
+            <div class="posts-heading">
+                <h1 align="center">Contiv入坑指南-v2plugin</h1>
+                
+                
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+    
+<div class="container" role="main" itemscope itemtype="http://schema.org/Article">
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            
+            
+            
+<div>
+    <section id="datecount">
+        <h4 id="date"> Fri Mar 10, 2017</h4>
+    </section>
+    <h5 id="wc">1300 Words|Read in about 3 Min</h5>
+    <h5 id="tags">Tags: 
+        
+        <a href="https://jimmysong.io/tags/docker/">docker</a> &nbsp;
+        
+        <a href="https://jimmysong.io/tags/network/">network</a> &nbsp;
+        
+        <a href="https://jimmysong.io/tags/sdn/">sdn</a> &nbsp;
+    </h5>
+</div>
+
+            
+            <article role="main" class="blog-post" itemprop="articleBody" id="content">
+                
+  
+  <aside class="toc">
+    <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#编译v2plugin插件">编译v2plugin插件</a></li>
+</ul></li>
+<li><a href="#启动contiv-plugin">启动contiv plugin</a></li>
+</ul></li>
+</ul>
+</nav>
+  </aside>
+  
+
+
+                
+
+<p>继续趟昨天挖的坑。</p>
+
+<p>昨天的<a href="https://github.com/contiv/netplugin/issues/776">issue-776</a>已经得到@gkvijay的回复，原来是因为没有安装contiv/v2plugin的缘故，所以create contiv network失败，我需要自己build一个<strong>docker plugin</strong>。</p>
+
+<p>查看下这个<a href="https://github.com/contiv/netplugin/commit/8afd1b7718c8424a876760d18484124e0aad3557">commit</a>里面有build <strong>v2plugin</strong>的脚本更改，所以直接调用以下命令就可以build自己的v2plugin。</p>
+
+<p>前提你需要先build出<code>netctl</code>、<code>netmaster</code>、<code>netplugin</code>三个二进制文件并保存到<strong>bin</strong>目录下，如果你没自己build直接下载<strong>release</strong>里面的文件保存进去也行。</p>
+
+<h3 id="编译v2plugin插件">编译v2plugin插件</h3>
+
+<p><strong>修改config.json插件配置文件</strong></p>
+
+<pre><code class="language-Json">{
+    &quot;manifestVersion&quot;: &quot;v0&quot;,
+    &quot;description&quot;: &quot;Contiv network plugin for Docker&quot;,
+    &quot;documentation&quot;: &quot;https://contiv.github.io&quot;,
+    &quot;entrypoint&quot;: [&quot;/startcontiv.sh&quot;],
+    &quot;network&quot;: {
+           &quot;type&quot;: &quot;host&quot;
+    },
+    &quot;env&quot;: [
+       {
+          &quot;Description&quot;: &quot;To enable debug mode, set to '-debug'&quot;,
+          &quot;Name&quot;: &quot;dbg_flag&quot;,
+          &quot;Settable&quot;: [
+             &quot;value&quot;
+          ],
+          &quot;Value&quot;: &quot;-debug&quot;
+       },
+       {
+          &quot;Description&quot;: &quot;VLAN uplink interface used by OVS&quot;,
+          &quot;Name&quot;: &quot;iflist&quot;,
+          &quot;Settable&quot;: [
+             &quot;value&quot;
+          ],
+          &quot;Value&quot;: &quot;&quot;
+       },
+       {
+          &quot;Description&quot;: &quot;Etcd or Consul cluster store url&quot;,
+          &quot;Name&quot;: &quot;cluster_store&quot;,
+          &quot;Settable&quot;: [
+             &quot;value&quot;
+          ],
+          &quot;Value&quot;: &quot;etcd://172.20.0.113:2379&quot;
+       },
+       {
+          &quot;Description&quot;: &quot;Local IP address to be used by netplugin for control communication&quot;,
+          &quot;Name&quot;: &quot;ctrl_ip&quot;,
+          &quot;Settable&quot;: [
+             &quot;value&quot;
+          ],
+          &quot;Value&quot;: &quot;none&quot;
+       },
+       {
+          &quot;Description&quot;: &quot;Local VTEP IP address to be used by netplugin&quot;,
+          &quot;Name&quot;: &quot;vtep_ip&quot;,
+          &quot;Settable&quot;: [
+             &quot;value&quot;
+          ],
+          &quot;Value&quot;: &quot;none&quot;
+       },
+       {
+          &quot;Description&quot;: &quot;In 'master' role, plugin runs netmaster and netplugin&quot;,
+          &quot;Name&quot;: &quot;plugin_role&quot;,
+          &quot;Settable&quot;: [
+             &quot;value&quot;
+          ],
+          &quot;Value&quot;: &quot;master&quot;
+       },
+       {
+          &quot;Description&quot;: &quot;Netmaster url to listen http requests on&quot;,
+          &quot;Name&quot;: &quot;listen_url&quot;,
+          &quot;Settable&quot;: [
+             &quot;value&quot;
+          ],
+          &quot;Value&quot;: &quot;172.20.0.113:9999&quot;
+       },
+       {
+          &quot;Description&quot;: &quot;Network Driver name for requests to dockerd. Should be same as name:tag of the plugin&quot;,
+          &quot;Name&quot;: &quot;plugin_name&quot;,
+          &quot;Settable&quot;: [
+             &quot;value&quot;
+          ],
+          &quot;Value&quot;: &quot;contiv/v2plugin:latest&quot;
+       }
+    ],
+    &quot;mounts&quot;: [
+       {
+          &quot;type&quot;: &quot;bind&quot;,
+          &quot;options&quot;: [&quot;rbind&quot;],
+          &quot;source&quot;: &quot;/etc/openvswitch&quot;,
+          &quot;destination&quot;: &quot;/etc/openvswitch&quot;
+       },
+       {
+          &quot;type&quot;: &quot;bind&quot;,
+          &quot;options&quot;: [&quot;rbind&quot;],
+          &quot;source&quot;: &quot;/var/log/openvswitch&quot;,
+          &quot;destination&quot;: &quot;/var/log/openvswitch&quot;
+       },
+       {
+          &quot;type&quot;: &quot;bind&quot;,
+          &quot;options&quot;: [&quot;rbind&quot;],
+          &quot;source&quot;: &quot;/var/run&quot;,
+          &quot;destination&quot;: &quot;/var/run&quot;
+       },
+       {
+          &quot;type&quot;: &quot;bind&quot;,
+          &quot;options&quot;: [&quot;rbind&quot;],
+          &quot;source&quot;: &quot;/lib/modules&quot;,
+          &quot;destination&quot;: &quot;/lib/modules&quot;
+       }
+    ],
+    &quot;interface&quot; : {
+          &quot;types&quot;: [&quot;docker.networkdriver/1.0&quot;, &quot;docker.ipamdriver/1.0&quot;],
+          &quot;socket&quot;: &quot;netplugin.sock&quot;
+    },
+    &quot;Linux&quot;: {
+          &quot;Capabilities&quot;: [&quot;CAP_SYS_ADMIN&quot;, &quot;CAP_NET_ADMIN&quot;, &quot;CAP_SYS_MODULE&quot;]
+    }
+}
+</code></pre>
+
+<p><a href="https://github.com/docker/docker/blob/master/docs/extend/config.md">关于<strong>docker plugin v2</strong>配置文件的说明</a></p>
+
+<p><strong>方法一</strong></p>
+
+<p>自动化make</p>
+
+<pre><code class="language-bash">$make host-pluginfs-create
+</code></pre>
+
+<p><strong>方法二</strong></p>
+
+<p>直接调用Makefile里指定的那个shell脚本<code>scripts/v2plugin_rootfs.sh</code>。</p>
+
+<pre><code class="language-Shell">$bash scripts/v2plugin_rootfs
+Creating rootfs for v2plugin ,
+sed: 1: &quot;install/v2plugin/config ...&quot;: command i expects \ followed by text
+Sending build context to Docker daemon 73.94 MB
+Step 1/5 : FROM alpine:3.5
+ ---&gt; 4a415e366388
+Step 2/5 : MAINTAINER Cisco Contiv (http://contiv.github.io/)
+ ---&gt; Running in fada1677341b
+ ---&gt; f0440792dff6
+Removing intermediate container fada1677341b
+Step 3/5 : RUN mkdir -p /run/docker/plugins /etc/openvswitch /var/run/contiv/log     &amp;&amp; echo 'http://dl-cdn.alpinelinux.org/alpine/v3.4/main' &gt;&gt; /etc/apk/repositories     &amp;&amp; apk update &amp;&amp; apk add openvswitch=2.5.0-r0 iptables
+ ---&gt; Running in 2ae2fbee6834
+fetch http://dl-cdn.alpinelinux.org/alpine/v3.5/main/x86_64/APKINDEX.tar.gz
+fetch http://dl-cdn.alpinelinux.org/alpine/v3.5/community/x86_64/APKINDEX.tar.gz
+fetch http://dl-cdn.alpinelinux.org/alpine/v3.4/main/x86_64/APKINDEX.tar.gz
+v3.5.2-3-g3649125268 [http://dl-cdn.alpinelinux.org/alpine/v3.5/main]
+v3.5.1-71-gc7bb9a04f0 [http://dl-cdn.alpinelinux.org/alpine/v3.5/community]
+v3.4.6-81-g1f1f409 [http://dl-cdn.alpinelinux.org/alpine/v3.4/main]
+OK: 13194 distinct packages available
+(1/6) Installing libmnl (1.0.4-r0)
+(2/6) Installing libnftnl-libs (1.0.7-r0)
+(3/6) Installing iptables (1.6.0-r0)
+(4/6) Installing libcrypto1.0 (1.0.2k-r0)
+(5/6) Installing libssl1.0 (1.0.2k-r0)
+(6/6) Installing openvswitch (2.5.0-r0)
+Executing busybox-1.25.1-r0.trigger
+OK: 19 MiB in 17 packages
+ ---&gt; b130141ad660
+Removing intermediate container 2ae2fbee6834
+Step 4/5 : COPY netplugin netmaster netctl startcontiv.sh /
+ ---&gt; 2b88b2f8e5e7
+Removing intermediate container d7580a394c64
+Step 5/5 : ENTRYPOINT /startcontiv.sh
+ ---&gt; Running in e6fc5c887cb3
+ ---&gt; 1c569e4c633d
+Removing intermediate container e6fc5c887cb3
+Successfully built 1c569e4c633d
+Password:
+03d60dc01488362156f98a062d17af7a34e4b17569c2fe4f5d2048d619860314
+Untagged: contivrootfs:latest
+Deleted: sha256:1c569e4c633d27bd3e79d9d30b2825ce57452d30f90a3452304b932835331b13
+Deleted: sha256:2b88b2f8e5e7bae348bf296f6254662c1d444760db5acd1764b9c955b106adad
+Deleted: sha256:b60594671dc9312bf7ba73bf17abb9704d2b0d0e802c0d990315c5b4a5ca11fe
+Deleted: sha256:b130141ad660d4ee291d9eb9a1e0704c4bc009fc91a73de28e8fd110aa45c481
+Deleted: sha256:ab3c02d5a171681ba00d27f2c456cf8b63eeeaf408161dc84d9d89526d0399de
+Deleted: sha256:f0440792dff6a89e321cc5d34ecaa21b4cb993f0c4e4df6c2b04eef8878bb471
+</code></pre>
+
+<blockquote>
+<p>创建镜像这一步需要输入你的docker hub密码。而且alpine下载软件需要翻墙的。打包v2plugin目录需要使用sudo，不然会报一个错。</p>
+</blockquote>
+
+<p>整个插件打包压缩后的大小是91M。现在<code>rootfs</code>和<code>config.json</code>都已经有了，就可以在你自己的系统上create docker plugin了。</p>
+
+<h2 id="启动contiv-plugin">启动contiv plugin</h2>
+
+<p>创建docker network plugin并enable。</p>
+
+<pre><code class="language-Shell">$docker plugin create contiv/v2plugin .
+contiv/v2plugin
+$docker plugin enable contiv/v2plugin
+$docker plugin ls
+ID                  NAME                     DESCRIPTION                        ENABLED
+574d4a4d82a3        contiv/v2plugin:latest   Contiv network plugin for Docker   true
+</code></pre>
+
+<p>至此*contiv plugin*已经创建好了，enable后执行<code>ip addr</code>命令可以看到多出一个网络*contivh0*。</p>
+
+<pre><code class="language-bash">contivh0: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc noqueue state UNKNOWN qlen 1000
+link/ether 02:02:ac:13:ff:fe brd ff:ff:ff:ff:ff:ff
+inet 172.19.255.254/16 scope global contivh0
+	valid_lft forever preferred_lft forever
+</code></pre>
+
+<p>且主机多了一个IP地址*172.19.255.254*。</p>
+
+<blockquote>
+<p>不需要再主机上安装<code>netctl</code>、<code>netmaster</code>、<code>netplugin</code>这几个二进制文件了，只需要安装<code>docker plugin</code>即可，这些都已经封装到plugin中了，如果你看下插件的目录结构就知道了。</p>
+</blockquote>
+
+<p>因为插件安装的问题，目前我测试机上的自定义插件都无法使用，正在troubleshooting中，一旦有进展会及时更新该文档。</p>
+
+<p>另外正在同步跟开发者沟通中，因为时差问题，下周一才能有结果。😪</p>
+
+            </article>
+
+            <ul class="pager blog-pager">
+                
+                <li class="previous">
+                    <a href="https://jimmysong.io/posts/contiv-guide/" data-toggle="tooltip" data-placement="top" title="思科开源docker网络插件Contiv简介">&larr; Previous Post</a>
+                </li>
+                 
+                <li class="next">
+                    <a href="https://jimmysong.io/posts/docker-vs-kubernetes-part1/" data-toggle="tooltip" data-placement="top" title="Docker对比Kubernetes第一部分">Next Post &rarr;</a>
+                </li>
+                
+            </ul>
+            
+            <div>
+                 
+                <h2>See Also</h2>
+                <ul>
+                    
+                    <li><a href="/posts/contiv-guide/">思科开源docker网络插件Contiv简介</a></li>
+                    
+                    <li><a href="/posts/docker-tech-selection/">Docker技术选型</a></li>
+                    
+                    <li><a href="/posts/docker-dev-env/">Docker源码编译和开发环境搭建</a></li>
+                    
+                </ul>
+                
+            </div>
+            
+            
+            
+            
+<div>
+    <section id="datecount">
+        <h4 id="date"> Fri Mar 10, 2017</h4>
+    </section>
+    <h5 id="wc">1300 Words|Read in about 3 Min</h5>
+    <h5 id="tags">Tags: 
+        
+        <a href="https://jimmysong.io/tags/docker/">docker</a> &nbsp;
+        
+        <a href="https://jimmysong.io/tags/network/">network</a> &nbsp;
+        
+        <a href="https://jimmysong.io/tags/sdn/">sdn</a> &nbsp;
+    </h5>
+</div>
+
+            
+            </div>
+            
+            
+        </div>
+    </div>
+    </section>
+</div>
+
+    <footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+        <img src="https://ws1.sinaimg.cn/large/00704eQkly1fs0lebokxaj30a004gq44.jpg">
+          
+              <li>
+                <a href="mailto:jimmysong@jimmysong.io" title="Email me">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://www.facebook.com/jimmysongio" title="Facebook">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/rootsongjc" title="GitHub">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://twitter.com/jimmysongio" title="Twitter">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://linkedin.com/in/jimmysongio" title="LinkedIn">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+          
+          <li>
+            <a href="https://jimmysong.io/index.xml" title="RSS">
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="credits copyright text-muted">
+        &copy;2017-2018
+          
+            
+              <a href="https://jimmysong.io">Jimmy Song(宋净超)</a>
+            
+          
+          
+          
+            &nbsp;&bull;&nbsp;
+            <a href="https://jimmysong.io/">Jimmy Song</a>
+          
+        </p>
+        <p class="credits theme-by text-muted">
+        <a href="https://servicemesher.github.io">ServiceMesher</a>&nbsp;&bull;&nbsp;<a href="https://dataikudss.com">dataikudss.com</a>&nbsp;&bull;&nbsp;<a href="https://cloudnativego.com">cloudnativego.com</a>
+        </p>
+
+        
+        <p class="credits theme-by text-muted">
+          <a href="http://gohugo.io">Hugo v0.40</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/rootsongjc/beautifulhugo">Beautiful Hugo</a>
+          
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/bootstrap.min.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/photoswipe-ui-default.min.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/photoswipe.min.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/auto-render.min.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/main.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/prism.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/katex.min.js"></script>
+<script> renderMathInElement(document.body); </script>
+
+
+
+
+
+
+
+  </body>
+</html>
+

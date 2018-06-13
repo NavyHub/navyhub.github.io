@@ -1,0 +1,1072 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title> Cloud Native Go - 基于Go和React的web云原生应用构建指南 - jimmysong.io|宋净超的博客|Cloud Native Developer Advocate</title>
+  <meta name="description" content="jimmysong.io|宋净超的博客|Cloud Native Developer Advocate" />
+  <meta property="og:title" content="Cloud Native Go - 基于Go和React的web云原生应用构建指南" />
+  <meta name="twitter:title" content="Cloud Native Go - 基于Go和React的web云原生应用构建指南" />
+  <meta name="description" content="Cloud Native Go 图书 电子工业出版社 Kevin Hoffman Dan Nemeth 云原生 Cloud Native React Web应用">
+  <meta property="og:description" content="Cloud Native Go 图书 电子工业出版社 Kevin Hoffman Dan Nemeth 云原生 Cloud Native React Web应用">
+  <meta name="twitter:description" content="Cloud Native Go 图书 电子工业出版社 Kevin Hoffman Dan Nemeth 云原生 Cloud Native React Web应用">
+  <meta name="author" content="Jimmy Song(宋净超)"/>
+  <link href='https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/favicon.ico' rel='icon' type='image/x-icon'/>
+  <meta property="og:image" content="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/avatar-icon.png" />
+  <meta name="twitter:image" content="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/avatar-icon.png" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@jimmysongio" />
+  <meta name="twitter:creator" content="@jimmysongio" />
+  <meta property="og:url" content="https://jimmysong.io/posts/cloud-native-go/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Jimmy Song" />
+
+  <meta name="generator" content="Hugo 0.40" />
+  <link rel="canonical" href="https://jimmysong.io/posts/cloud-native-go/" />
+  <link rel="alternate" href="https://jimmysong.io/index.xml" type="application/rss+xml" title="Jimmy Song">
+  <script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/jquery-1.12.4.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  
+  
+  <link rel="stylesheet" href="https://jimmysong.io/css/main.css" />
+  <link rel="stylesheet" href="https://jimmysong.io/css/search.css" />
+  
+  
+
+<meta name="baidu-site-verification" content="g8IYR9SNLF" />
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?11f7d254cfa4e0ca44b175c66d379ecc";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+<link rel="stylesheet" href="https://jimmysong.io/css/prism.css" />
+
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/photoswipe.min.css" integrity="sha256-sCl5PUOGMLfFYctzDW3MtRib0ctyUvI9Qsmq2wXOeBY=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/default-skin/default-skin.min.css" integrity="sha256-BFeI1V+Vh1Rk37wswuOYn5lsTcaU96hGaI7OUVCLjPc=" crossorigin="anonymous" />
+
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+</head>
+
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https://jimmysong.io/">Jimmy Song</a>
+    </div>
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">Categories</a>
+              <div class="navlinks-children">
+                
+                
+                  <a href="https://jimmysong.io/categories/kubernetes">kubernetes</a>
+                
+                
+                  <a href="https://jimmysong.io/categories/cloud-native">Cloud Native</a>
+                
+                
+                  <a href="https://jimmysong.io/categories/microservices">Microservices</a>
+                
+                
+                  <a href="https://jimmysong.io/categories/devops">Devops</a>
+                
+                
+                  <a href="https://jimmysong.io/categories/github">Github</a>
+                
+                
+                  <a href="https://jimmysong.io/categories/serverless">Serverless</a>
+                
+                
+                  <a href="https://jimmysong.io/categories/service-mesh">Service Mesh</a>
+                
+                
+                  <a href="https://jimmysong.io/tags">Tags</a>
+                
+              </div>
+            </li>
+          
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">Gitbooks</a>
+              <div class="navlinks-children">
+                
+                
+                  <a href="https://jimmysong.io/kubernetes-handbook">Kubernetes handbook</a>
+                
+                
+                  <a href="https://jimmysong.io/docker-handbook">Docker handbook</a>
+                
+                
+                  <a href="https://jimmysong.io/hugo-handbook">Hugo Handbook</a>
+                
+                
+                  <a href="https://servicemesher.github.io/envoy">Envoy proxy中文文档</a>
+                
+                
+                  <a href="https://jimmysong.io/migrating-to-cloud-native-application-architectures">Migrating to Cloud Native</a>
+                
+              </div>
+            </li>
+          
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">Publications</a>
+              <div class="navlinks-children">
+                
+                
+                  <a href="https://jimmysong.io/cloud-native-go">Cloud Native Go</a>
+                
+                
+                  <a href="https://jimmysong.io/posts/cloud-native-python">Cloud Native Python</a>
+                
+                
+                  <a href="https://jimmysong.io/posts/cloud-native-java">Cloud Native Java</a>
+                
+              </div>
+            </li>
+          
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">Projects</a>
+              <div class="navlinks-children">
+                
+                
+                  <a href="https://github.com/rootsongjc/kubernetes-vagrant-centos-cluster">k8s all-in-one</a>
+                
+                
+                  <a href="https://jimmysong.io/spark-on-k8s">Spark on kubernetes</a>
+                
+                
+                  <a href="https://jimmysong.io/posts/yarn-on-docker">Magpie</a>
+                
+                
+                  <a href="https://jimmysong.io/cheatsheets">Cheatsheets</a>
+                
+                
+                  <a href="https://github.com/rootsongjc/beautifulhugo">Beautifulhugo</a>
+                
+              </div>
+            </li>
+          
+        
+          
+            <li>
+              <a title="About" href="/about">About</a>
+              
+              
+            </li>
+          
+        
+
+        
+
+        
+        
+          <li>
+            <a href="#modalSearch" data-toggle="modal" data-target="#modalSearch" style="outline: none;">
+              <span class="hidden-sm hidden-md hidden-lg">Search</span> <span id="searchGlyph" class="glyphicon glyphicon-search"></span>
+            </a>
+          </li>
+          
+      </ul>
+    </div>
+
+    <div class="avatar-container">
+      <div class="avatar-img-border">
+        
+          <a title="Jimmy Song" href="https://jimmysong.io/">
+            <img class="avatar-img" src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/avatar-icon.png" alt="Jimmy Song" />
+          </a>
+        
+      </div>
+    </div>
+
+  </div>
+</nav>
+
+
+
+
+
+  <div id="modalSearch" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Search jimmysong.io</h4>
+        </div>
+        <div class="modal-body">
+            
+<div class="aa-input-container" id="aa-input-container">
+    <input type="search" id="aa-search-input" class="aa-input-search" placeholder="Search for titles or URIs..." name="search" autocomplete="off" />
+    <svg class="aa-input-icon" viewBox="654 -372 1664 1664">
+        <path d="M1806,332c0-123.3-43.8-228.8-131.5-316.5C1586.8-72.2,1481.3-116,1358-116s-228.8,43.8-316.5,131.5  C953.8,103.2,910,208.7,910,332s43.8,228.8,131.5,316.5C1129.2,736.2,1234.7,780,1358,780s228.8-43.8,316.5-131.5  C1762.2,560.8,1806,455.3,1806,332z M2318,1164c0,34.7-12.7,64.7-38,90s-55.3,38-90,38c-36,0-66-12.7-90-38l-343-342  c-119.3,82.7-252.3,124-399,124c-95.3,0-186.5-18.5-273.5-55.5s-162-87-225-150s-113-138-150-225S654,427.3,654,332  s18.5-186.5,55.5-273.5s87-162,150-225s138-113,225-150S1262.7-372,1358-372s186.5,18.5,273.5,55.5s162,87,225,150s113,138,150,225  S2062,236.7,2062,332c0,146.7-41.3,279.7-124,399l343,343C2305.7,1098.7,2318,1128.7,2318,1164z" />
+    </svg>
+</div>
+
+
+
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/algoliasearch.min.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/autocomplete.min.js"></script>
+
+<script>
+var client = algoliasearch("X4YB3WOBNV", "d2134c5a8d250e6d3246594240c45201");
+var index = client.initIndex('rootsongjc-hugo');
+
+autocomplete('#aa-search-input',
+{ hint: false}, {
+    source: autocomplete.sources.hits(index, {hitsPerPage: 5}),
+    
+    displayKey: 'name',
+    
+    templates: {
+        
+        suggestion: function(suggestion) {
+            
+            return '<span>' + '<a href="/' + suggestion.uri+ '">' +
+            suggestion._highlightResult.title.value + '</a></span>';
+        }
+    }
+});
+</script>
+
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+    
+  
+  
+  
+
+
+
+
+  
+    <div id="header-big-imgs" data-num-img=1 data-img-src-1="https://res.cloudinary.com/jimmysong/image/upload/images/20160326003.jpg" data-img-desc-1="北京植物园桃花 Mar 26,2016"></div>
+  
+
+  <header class="header-section has-img">
+    
+      <div class="intro-header big-img">
+        
+        
+        <div class="container">
+          <div class="row">
+              <div class="col-lg-12 col-md-12 col-md-offset-0">
+                
+                <div class="post-heading">
+                
+                  
+                     <h1>Cloud Native Go - 基于Go和React的web云原生应用构建指南</h1>
+                     
+                    <span class="post-meta">
+  
+  Posted on June 6, 2017
+  
+  
+</span>
+
+
+                    
+                  
+                  
+              </div>
+            </div>
+          </div>
+        </div>
+        <span class="img-desc" style="display: inline;"></span>
+      </div>
+    
+    <div class="intro-header no-img">
+      
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 col-md-12 col-md-offset-0">
+            <div class="posts-heading">
+                <h1 align="center">Cloud Native Go - 基于Go和React的web云原生应用构建指南</h1>
+                
+                
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+    
+<div class="container" role="main" itemscope itemtype="http://schema.org/Article">
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            
+            
+            
+<div>
+    <section id="datecount">
+        <h4 id="date"> Tue Jun 6, 2017</h4>
+    </section>
+    <h5 id="wc">3500 Words|Read in about 7 Min</h5>
+    <h5 id="tags">Tags: 
+        
+        <a href="https://jimmysong.io/tags/book/">book</a> &nbsp;
+        
+        <a href="https://jimmysong.io/tags/go/">go</a> &nbsp;
+        
+        <a href="https://jimmysong.io/tags/microservices/">microservices</a> &nbsp;
+        
+        <a href="https://jimmysong.io/tags/cloud-native/">cloud-native</a> &nbsp;
+    </h5>
+</div>
+
+            
+            <article role="main" class="blog-post" itemprop="articleBody" id="content">
+                
+  
+  <aside class="toc">
+    <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#简介">简介</a></li>
+<li><a href="#关于作者">关于作者</a></li>
+<li><a href="#目录">目录</a>
+<ul>
+<li><a href="#云之道-1">云之道.. 1</a></li>
+<li><a href="#2-开始-11">2  开始.. 11</a></li>
+<li><a href="#3-go入门-17">3  Go入门.. 17</a></li>
+<li><a href="#4-持续交付-35">4  持续交付.. 35</a></li>
+<li><a href="#5-在go中构建微服务-55">5  在Go中构建微服务.. 55</a></li>
+<li><a href="#6-运用后端服务-75">6  运用后端服务.. 75</a></li>
+<li><a href="#7-构建数据服务-99">7  构建数据服务.. 99</a></li>
+<li><a href="#8-事件溯源和cqrs-119">8  事件溯源和CQRS. 119</a></li>
+<li><a href="#9-使用go构建web应用程序-143">9  使用Go构建web应用程序.. 143</a></li>
+<li><a href="#10-云安全-157">10  云安全.. 157</a></li>
+<li><a href="#11-使用websockets-175">11  使用WebSockets. 175</a></li>
+<li><a href="#12-使用react构建web视图-185">12  使用React构建Web视图.. 185</a></li>
+<li><a href="#13-使用flux构建可扩展的ui-203">13  使用Flux构建可扩展的UI 203</a></li>
+<li><a href="#14-创建完整应用world-of-fluxcraft-217">14  创建完整应用World of FluxCraft 217</a></li>
+<li><a href="#15-结论-231">15  结论.. 231</a></li>
+<li><a href="#附录a-云应用的故障排查-235">附录A  云应用的故障排查.. 235</a></li>
+<li><a href="#索引-239">索引.. 239</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+  </aside>
+  
+
+
+                
+
+<p>Kevin Hoffman和Dan Nemeth著的《Cloud Native Go - 基于Go和React的web云原生应用构建指南》已由<strong>电子工业出版社</strong>出版。</p>
+
+<p><img src="https://ws1.sinaimg.cn/large/00704eQkgy1fs4t18v1vyj30m80t0tm3.jpg" alt="Cloud Native Go 宋净超" /></p>
+
+<p><strong>扫码购买</strong></p>
+
+<p><img src="https://ws1.sinaimg.cn/large/00704eQkly1fs1e91nn4pj308c08cmx7.jpg" alt="Cloud Native Go购买地址" /></p>
+
+<h2 id="简介">简介</h2>
+
+<p>Cloud Native Go向开发人员展示如何构建大规模云应用程序，在满足当今客户的强大需求的同时还可以动态扩展来处理几乎任何规模的数据量、流量或用户。</p>
+
+<p>Kevin Hoffman和Dan Nemeth详细描述了现代云原生应用程序，阐明了与快速、可靠的云原生开发相关的因素、规则和习惯。他们还介绍了Go这种“简单优雅”的高性能语言，它特别适合于云开发。</p>
+
+<p>在本书中你将使用Go语言创建微服务，使用ReactJS和Flux添加前端Web组件，并掌握基于Go的高级云原生技术。Hoffman和Nemeth展示了如何使用Wercker、Docker和Dockerhub等工具构建持续交付管道; 自动推送应用程序到平台上; 并系统地监控生产中的应用程序性能。</p>
+
+<ul>
+<li>学习“云之道”：为什么开发好的云软件基本上是关于心态和规则</li>
+<li>了解为什么使用Go语言是云本地微服务开发的理想选择</li>
+<li>规划支持持续交付和部署的云应用程序</li>
+
+<li><p>设计服务生态系统，然后以test-first的方式构建它们</p></li>
+
+<li><p>将正在进行的工作推送到云</p></li>
+
+<li><p>使用事件源和CQRS模式来响应大规模和高吞吐量</p></li>
+
+<li><p>安全的基于云的Web应用程序：做与不做的选择</p></li>
+
+<li><p>使用第三方消息传递供应商创建响应式云应用程序</p></li>
+
+<li><p>使用React和Flux构建大规模，云友好的GUI</p></li>
+
+<li><p>监控云中的动态扩展，故障转移和容错</p></li>
+</ul>
+
+<p>章节简介如下图。</p>
+
+<p><img src="https://res.cloudinary.com/jimmysong/image/upload/images/cloud-native-go-abstract.png" alt="Cloud Native Go各章节简介" /></p>
+
+<h2 id="关于作者">关于作者</h2>
+
+<p><strong>Kevin Hoffman</strong>通过现代化和以多种不同语言构建云原生服务的方式帮助企业将其应用程序引入云端。他10岁时开始编程，在重新组装的CommodoreVIC-20上自习BASIC。从那时起，他已经沉迷于构建软件，并花了很多时间学习语言、框架和模式。他已经构建了从遥控摄影无人机、仿生性安全系统、超低延迟金融应用程序到移动应用程序等一系列软件。他在构建需要与Pivotal Cloud Foundry配合使用的自定义组件时爱上了Go语言。</p>
+
+<p>Kevin 是流行的幻想书系列（<a href="http://amzn.to/2fc8iES">The Sigilord Chronicles</a> ）的作者，他热切地期待着最终能够将自己对构建软件的热爱与对构建幻想世界的热爱结合起来。</p>
+
+<p><strong>Dan Nemeth</strong>目前在Pivotal担任咨询解决方案架构师，负责支持Pivotal Cloud Foundry。他从Commodore 64开始就一直在开发软件，从1995年起开始专业编码，使用ANSIC编写了用于本地ISP的CGI脚本。从那时起，他职业生涯的大部分时间里是作为独立顾问为从金融到制药行业提供解决方案，并使用当时流行的各种语言和框架。Dan最近接受了Go作为自己的归宿，并热情地将它用于所有的项目。</p>
+
+<p>如果你发现Dan没在电脑前，他很可能就是在靠近安纳波利斯的水域玩帆船或飞钓。</p>
+
+<p>下面先罗列下目录，以飨读者。</p>
+
+<h2 id="目录">目录</h2>
+
+<h3 id="云之道-1">云之道.. 1</h3>
+
+<p>云之道的优点.. 2</p>
+
+<p>遵循简单.. 2</p>
+
+<p>测试优先，测试一切.. 3</p>
+
+<p>尽早发布，频繁发布.. 5</p>
+
+<p>自动化一切.. 6</p>
+
+<p>建立服务生态系统.. 7</p>
+
+<p>为什么使用Go. 8</p>
+
+<p>简单.. 8</p>
+
+<p>开源.. 8</p>
+
+<p>易于自动化和IDE自由化.. 8</p>
+
+<p>本章小结.. 9</p>
+
+<h3 id="2-开始-11">2  开始.. 11</h3>
+
+<p>正确的工具.. 11</p>
+
+<p>配置Git 12</p>
+
+<p>安装Homebrew. 12</p>
+
+<p>安装Git客户端.. 13</p>
+
+<p>安装Mercurial和Bazaar 13</p>
+
+<p>创建Github账户.. 14</p>
+
+<p>创建Go环境.. 14</p>
+
+<p>配置Go工作区.. 14</p>
+
+<p>检查环境.. 15</p>
+
+<p>本章小结.. 16</p>
+
+<h3 id="3-go入门-17">3  Go入门.. 17</h3>
+
+<p>建立Hello Cloud. 18</p>
+
+<p>使用基本函数.. 19</p>
+
+<p>使用结构体.. 22</p>
+
+<p>介绍Go接口.. 25</p>
+
+<p>向结构体添加方法.. 25</p>
+
+<p>Go中的接口动态类型检查.. 26</p>
+
+<p>使用第三方包.. 28</p>
+
+<p>创建自有包.. 30</p>
+
+<p>导出函数和数据.. 31</p>
+
+<p>创建包.. 31</p>
+
+<p>本章小结.. 34</p>
+
+<h3 id="4-持续交付-35">4  持续交付.. 35</h3>
+
+<p>Docker介绍.. 36</p>
+
+<p>为什么要使用Docker 36</p>
+
+<p>安装Docker 36</p>
+
+<p>运行Docker镜像.. 38</p>
+
+<p>与Wercker的持续集成.. 39</p>
+
+<p>持续集成的最佳实践.. 39</p>
+
+<p>为什么使用Wercker 40</p>
+
+<p>创建Wercker应用程序.. 41</p>
+
+<p>安装Wercker CLI 42</p>
+
+<p>创建Wercker配置文件.. 43</p>
+
+<p>使用Wercker进行构建.. 48</p>
+
+<p>部署到DockerHub. 50</p>
+
+<p>读者练习：创建完整的开发管道.. 51</p>
+
+<p>高级挑战：集成第三方库.. 53</p>
+
+<p>本章小结.. 53</p>
+
+<h3 id="5-在go中构建微服务-55">5  在Go中构建微服务.. 55</h3>
+
+<p>设计API First的服务.. 55</p>
+
+<p>设计Matches API 56</p>
+
+<p>创建APIBlueprint 56</p>
+
+<p>通过Apiary测试和发布文档.. 58</p>
+
+<p>架设微服务.. 59</p>
+
+<p>构建Test First的服务.. 62</p>
+
+<p>创建第一个失败测试.. 63</p>
+
+<p>测试LocationHeader 66</p>
+
+<p>壮丽的蒙太奇：迭代测试.. 67</p>
+
+<p>在云端部署和运行.. 70</p>
+
+<p>创建PWS帐户.. 70</p>
+
+<p>配置PCF开发环境.. 70</p>
+
+<p>提交到Cloud Foundry. 71</p>
+
+<p>本章小结.. 72</p>
+
+<h3 id="6-运用后端服务-75">6  运用后端服务.. 75</h3>
+
+<p>设计服务系统.. 75</p>
+
+<p>测试优先构建依赖服务.. 77</p>
+
+<p>构建Fulfillment服务.. 78</p>
+
+<p>构建Catalog服务.. 81</p>
+
+<p>在服务之间共享结构化数据.. 87</p>
+
+<p>客户端引用服务端包.. 88</p>
+
+<p>客户端复制服务端结构.. 88</p>
+
+<p>客户端与服务端引用共享包.. 89</p>
+
+<p>使用服务捆绑来外部化地址与元数据.. 90</p>
+
+<p>服务发现.. 93</p>
+
+<p>动态服务发现.. 94</p>
+
+<p>Netflix的服务发现系统Eureka 94</p>
+
+<p>读者练习.. 97</p>
+
+<p>进阶操作.. 97</p>
+
+<p>本章小结.. 98</p>
+
+<h3 id="7-构建数据服务-99">7  构建数据服务.. 99</h3>
+
+<p>构建MongoDB存储库.. 100</p>
+
+<p>为什么选择MongoDB. 100</p>
+
+<p>更新存储库模型.. 100</p>
+
+<p>通过Go来操作MongoDB. 101</p>
+
+<p>以Test-First方式编写MongoDB存储库.. 102</p>
+
+<p>集成测试一个Mongo-Backed服务.. 107</p>
+
+<p>集成临时MongoDB数据库.. 108</p>
+
+<p>编写一个集成测试.. 110</p>
+
+<p>在云中运行.. 115</p>
+
+<p>后端服务的配置.. 115</p>
+
+<p>本章小结.. 117</p>
+
+<h3 id="8-事件溯源和cqrs-119">8  事件溯源和CQRS. 119</h3>
+
+<p>现实源自事件.. 120</p>
+
+<p>幂等.. 121</p>
+
+<p>隔离.. 121</p>
+
+<p>可测试.. 122</p>
+
+<p>可再现，可恢复.. 123</p>
+
+<p>大数据.. 123</p>
+
+<p>拥抱最终一致性.. 123</p>
+
+<p>CQRS（命令查询责任分离）简介.. 124</p>
+
+<p>事件溯源案例.. 126</p>
+
+<p>天气监测.. 126</p>
+
+<p>互联网汽车.. 127</p>
+
+<p>社交媒体消息处理.. 127</p>
+
+<p>代码示例：管理无人机舰队.. 128</p>
+
+<p>构建命令处理程序服务.. 129</p>
+
+<p>介绍RabbitMQ. 129</p>
+
+<p>构建命令处理器服务.. 133</p>
+
+<p>构建事件处理器.. 135</p>
+
+<p>对事件处理器进行集成测试.. 140</p>
+
+<p>构建查询处理程序服务.. 140</p>
+
+<p>本章小结.. 141</p>
+
+<h3 id="9-使用go构建web应用程序-143">9  使用Go构建web应用程序.. 143</h3>
+
+<p>处理静态文件和asset 143</p>
+
+<p>支持JavaScript客户端.. 145</p>
+
+<p>使用服务端模板.. 148</p>
+
+<p>处理表单.. 150</p>
+
+<p>使用cookies和会话状态.. 151</p>
+
+<p>写入cookies 152</p>
+
+<p>读取cookies 153</p>
+
+<p>使用Wercker构建和部署.. 153</p>
+
+<p>本章小结.. 155</p>
+
+<h3 id="10-云安全-157">10  云安全.. 157</h3>
+
+<p>保护Web应用程序.. 157</p>
+
+<p>应用程序安全性选项.. 158</p>
+
+<p>设置Auth0账户.. 159</p>
+
+<p>构建一个OAuth安全的Web应用程序.. 160</p>
+
+<p>运行安全的Web应用程序.. 164</p>
+
+<p>保护微服务.. 166</p>
+
+<p>客户端凭据模式概述.. 166</p>
+
+<p>使用客户端凭据保护微服务.. 168</p>
+
+<p>关于SSL的注意事项.. 169</p>
+
+<p>隐私和数据安全.. 170</p>
+
+<p>黑客不能得到你没有的.. 170</p>
+
+<p>读者练习.. 172</p>
+
+<p>本章小结.. 173</p>
+
+<h3 id="11-使用websockets-175">11  使用WebSockets. 175</h3>
+
+<p>WebSockets解析.. 175</p>
+
+<p>WebSockets如何工作.. 176</p>
+
+<p>WebSockets与服务器发送事件对比.. 177</p>
+
+<p>设计WebSockets服务器 . 177</p>
+
+<p>WebSockets的云原生适应性.. 178</p>
+
+<p>使用消息服务创建WebSockets应用.. 180</p>
+
+<p>关于JavaScript框架.. 183</p>
+
+<p>运行WebSockets示例.. 183</p>
+
+<p>本章小结.. 184</p>
+
+<h3 id="12-使用react构建web视图-185">12  使用React构建Web视图.. 185</h3>
+
+<p>JavaScript的形势 . 186</p>
+
+<p>为什么选择React 186</p>
+
+<p>虚拟DOM.. 187</p>
+
+<p>组件组合.. 187</p>
+
+<p>响应式数据流.. 188</p>
+
+<p>集中焦点.. 188</p>
+
+<p>使用的便利性.. 189</p>
+
+<p>React应用程序剖析.. 189</p>
+
+<p>package.json文件.. 189</p>
+
+<p>Webpack.config.js 文件.. 191</p>
+
+<p>.babelrc文件.. 191</p>
+
+<p>理解JSX和Webpack. 191</p>
+
+<p>React组件.. 192</p>
+
+<p>构建简单的React应用程序.. 192</p>
+
+<p>不赞成的做法.. 199</p>
+
+<p>测试React应用程序.. 200</p>
+
+<p>进一步阅读.. 200</p>
+
+<p>React网站.. 200</p>
+
+<p>React书籍.. 201</p>
+
+<p>其他资料 . 201</p>
+
+<p>本章小结 . 201</p>
+
+<h3 id="13-使用flux构建可扩展的ui-203">13  使用Flux构建可扩展的UI 203</h3>
+
+<p>Flux介绍.. 203</p>
+
+<p>dispatcher 204</p>
+
+<p>store 204</p>
+
+<p>view. 205</p>
+
+<p>action. 205</p>
+
+<p>source 205</p>
+
+<p>Flux的复杂性.. 205</p>
+
+<p>创建Flux应用程序.. 206</p>
+
+<p>本章小结.. 215</p>
+
+<h3 id="14-创建完整应用world-of-fluxcraft-217">14  创建完整应用World of FluxCraft 217</h3>
+
+<p>World of FluxCraft介绍.. 218</p>
+
+<p>架构概览.. 219</p>
+
+<p>独立扩展、版本控制和部署.. 221</p>
+
+<p>数据库不是集成层.. 221</p>
+
+<p>单向不可变数据流.. 221</p>
+
+<p>Flux GUI 222</p>
+
+<p>Go UI宿主服务.. 223</p>
+
+<p>玩家移动时序图.. 224</p>
+
+<p>命令处理.. 225</p>
+
+<p>事件处理.. 226</p>
+
+<p>维持现实服务的状态.. 227</p>
+
+<p>地图管理.. 227</p>
+
+<p>自动验收测试.. 228</p>
+
+<p>本章小结.. 230</p>
+
+<h3 id="15-结论-231">15  结论.. 231</h3>
+
+<p>我们学到了什么.. 231</p>
+
+<p>Go不是小众语言.. 231</p>
+
+<p>微服务应该有多“微” 232</p>
+
+<p>持续交付和部署.. 232</p>
+
+<p>测试一切.. 232</p>
+
+<p>尽早发布，频繁发布.. 232</p>
+
+<p>事件溯源、CQRS和更多首字母缩略词.. 233</p>
+
+<p>下一步.. 233</p>
+
+<h3 id="附录a-云应用的故障排查-235">附录A  云应用的故障排查.. 235</h3>
+
+<h3 id="索引-239">索引.. 239</h3>
+
+<p><em>本文最后更新于2017年6月24日</em></p>
+
+            </article>
+
+            <ul class="pager blog-pager">
+                
+                <li class="previous">
+                    <a href="https://jimmysong.io/posts/istio-overview/" data-toggle="tooltip" data-placement="top" title="微服务管理框架service mesh——Istio简介">&larr; Previous Post</a>
+                </li>
+                 
+                <li class="next">
+                    <a href="https://jimmysong.io/posts/configuration-best-practice/" data-toggle="tooltip" data-placement="top" title="Kubernetes配置最佳实践">Next Post &rarr;</a>
+                </li>
+                
+            </ul>
+            
+            <div>
+                 
+                <h2>See Also</h2>
+                <ul>
+                    
+                    <li><a href="/posts/microservice-reading-notes/">微服务设计读书笔记</a></li>
+                    
+                    <li><a href="/posts/istio-installation/">微服务管理框架service mesh——Istio安装试用笔记</a></li>
+                    
+                    <li><a href="/posts/kubernetes-handbook-startup/">Kubernetes Handbook发起</a></li>
+                    
+                    <li><a href="/posts/kubernetes-installation-document/">Kubernetes1.6集群部署完全指南——二进制文件部署开启TLS基于CentOS7发布</a></li>
+                    
+                    <li><a href="/posts/cloud-computing-architecture-practice/">云计算技术架构与实践（第二版）读后感</a></li>
+                    
+                </ul>
+                
+            </div>
+            
+            
+            
+            
+<div>
+    <section id="datecount">
+        <h4 id="date"> Tue Jun 6, 2017</h4>
+    </section>
+    <h5 id="wc">3500 Words|Read in about 7 Min</h5>
+    <h5 id="tags">Tags: 
+        
+        <a href="https://jimmysong.io/tags/book/">book</a> &nbsp;
+        
+        <a href="https://jimmysong.io/tags/go/">go</a> &nbsp;
+        
+        <a href="https://jimmysong.io/tags/microservices/">microservices</a> &nbsp;
+        
+        <a href="https://jimmysong.io/tags/cloud-native/">cloud-native</a> &nbsp;
+    </h5>
+</div>
+
+            
+            </div>
+            
+            
+        </div>
+    </div>
+    </section>
+</div>
+
+    <footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+        <img src="https://ws1.sinaimg.cn/large/00704eQkly1fs0lebokxaj30a004gq44.jpg">
+          
+              <li>
+                <a href="mailto:jimmysong@jimmysong.io" title="Email me">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://www.facebook.com/jimmysongio" title="Facebook">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/rootsongjc" title="GitHub">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://twitter.com/jimmysongio" title="Twitter">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://linkedin.com/in/jimmysongio" title="LinkedIn">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+          
+          <li>
+            <a href="https://jimmysong.io/index.xml" title="RSS">
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="credits copyright text-muted">
+        &copy;2017-2018
+          
+            
+              <a href="https://jimmysong.io">Jimmy Song(宋净超)</a>
+            
+          
+          
+          
+            &nbsp;&bull;&nbsp;
+            <a href="https://jimmysong.io/">Jimmy Song</a>
+          
+        </p>
+        <p class="credits theme-by text-muted">
+        <a href="https://servicemesher.github.io">ServiceMesher</a>&nbsp;&bull;&nbsp;<a href="https://dataikudss.com">dataikudss.com</a>&nbsp;&bull;&nbsp;<a href="https://cloudnativego.com">cloudnativego.com</a>
+        </p>
+
+        
+        <p class="credits theme-by text-muted">
+          <a href="http://gohugo.io">Hugo v0.40</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/rootsongjc/beautifulhugo">Beautiful Hugo</a>
+          
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/bootstrap.min.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/photoswipe-ui-default.min.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/photoswipe.min.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/auto-render.min.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/main.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/prism.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/katex.min.js"></script>
+<script> renderMathInElement(document.body); </script>
+
+
+
+
+
+
+
+  </body>
+</html>
+

@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Categories on Jimmy Song</title>
+    <link>https://jimmysong.io/categories/</link>
+    <description>Recent content in Categories on Jimmy Song</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <managingEditor>jimmysong@jimmysong.io (Jimmy Song(宋净超))</managingEditor>
+    <webMaster>jimmysong@jimmysong.io (Jimmy Song(宋净超))</webMaster>
+    
+	<atom:link href="https://jimmysong.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Cloud Native</title>
+      <link>https://jimmysong.io/categories/cloud-native/</link>
+      <pubDate>Mon, 28 May 2018 16:52:30 +0800</pubDate>
+      <author>jimmysong@jimmysong.io (Jimmy Song(宋净超))</author>
+      <guid>https://jimmysong.io/categories/cloud-native/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Code</title>
+      <link>https://jimmysong.io/categories/code/</link>
+      <pubDate>Fri, 24 Mar 2017 08:36:29 +0800</pubDate>
+      <author>jimmysong@jimmysong.io (Jimmy Song(宋净超))</author>
+      <guid>https://jimmysong.io/categories/code/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Container</title>
+      <link>https://jimmysong.io/categories/container/</link>
+      <pubDate>Tue, 04 Apr 2017 00:19:04 +0800</pubDate>
+      <author>jimmysong@jimmysong.io (Jimmy Song(宋净超))</author>
+      <guid>https://jimmysong.io/categories/container/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Devops</title>
+      <link>https://jimmysong.io/categories/devops/</link>
+      <pubDate>Mon, 21 Aug 2017 16:56:45 +0800</pubDate>
+      <author>jimmysong@jimmysong.io (Jimmy Song(宋净超))</author>
+      <guid>https://jimmysong.io/categories/devops/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Docker</title>
+      <link>https://jimmysong.io/categories/docker/</link>
+      <pubDate>Sun, 19 Mar 2017 23:00:29 +0800</pubDate>
+      <author>jimmysong@jimmysong.io (Jimmy Song(宋净超))</author>
+      <guid>https://jimmysong.io/categories/docker/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Github</title>
+      <link>https://jimmysong.io/categories/github/</link>
+      <pubDate>Fri, 25 May 2018 18:43:51 +0800</pubDate>
+      <author>jimmysong@jimmysong.io (Jimmy Song(宋净超))</author>
+      <guid>https://jimmysong.io/categories/github/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Kubernetes</title>
+      <link>https://jimmysong.io/categories/kubernetes/</link>
+      <pubDate>Sat, 21 Apr 2018 10:07:20 +0800</pubDate>
+      <author>jimmysong@jimmysong.io (Jimmy Song(宋净超))</author>
+      <guid>https://jimmysong.io/categories/kubernetes/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Microservices</title>
+      <link>https://jimmysong.io/categories/microservices/</link>
+      <pubDate>Tue, 13 Mar 2018 11:29:15 +0800</pubDate>
+      <author>jimmysong@jimmysong.io (Jimmy Song(宋净超))</author>
+      <guid>https://jimmysong.io/categories/microservices/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Serverless</title>
+      <link>https://jimmysong.io/categories/serverless/</link>
+      <pubDate>Tue, 26 Dec 2017 21:16:04 +0800</pubDate>
+      <author>jimmysong@jimmysong.io (Jimmy Song(宋净超))</author>
+      <guid>https://jimmysong.io/categories/serverless/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Service Mesh</title>
+      <link>https://jimmysong.io/categories/service-mesh/</link>
+      <pubDate>Wed, 30 May 2018 11:50:55 +0800</pubDate>
+      <author>jimmysong@jimmysong.io (Jimmy Song(宋净超))</author>
+      <guid>https://jimmysong.io/categories/service-mesh/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Talks</title>
+      <link>https://jimmysong.io/categories/talks/</link>
+      <pubDate>Sat, 23 Sep 2017 19:17:08 +0800</pubDate>
+      <author>jimmysong@jimmysong.io (Jimmy Song(宋净超))</author>
+      <guid>https://jimmysong.io/categories/talks/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>
